@@ -1,0 +1,4 @@
+BSCS,BS in Computer Science
+BSMCB,BS in Microbiology
+BSEE,BS in Electrical Engineering
+BSME ,BS in Mechanical Engineering
