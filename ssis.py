@@ -179,47 +179,74 @@ class SimpleStudentInformationSystem:
 ############################################################################################################
 
     def edit_student(self):
-        search = input("Enter search term(Name or ID): ")
-        if self.students:
-            for student in self.students:
-                if search in student.id or search in student.name :
-                    print(f"ID: {student.id}, Name: {student.name}, Course: {student.course}")
-                    name = input(f"Enter new name for student {search}: ")
-                    student.name = name
-                    print("Student edited successfully.") 
-                    if not name:
-                        print("Invalid input. Name cannot be blank.")
-                        return
-                    return
-
-                if not search in student.id and search in student.name:
-                    print("Student not found.")
-                    return
-            self.save_students()  
-        else:
-            print("Student List is empty.")
-
-    def edit_course(self):
-        search = input("Enter student to edit his/her course(Name or ID): ")
+        search = input("Enter search term (Name or ID): ")
+        
         if self.students:
             for student in self.students:
                 if search in student.id or search in student.name:
                     print(f"ID: {student.id}, Name: {student.name}, Course: {student.course}")
-                    code = input(f"Enter new Course code for student {search}: ")
-                    student.course = code
-                    print("Student edited successfully.") 
-                    if not code:
-                        print("Invalid input. Code cannot be blank.")
+
+                    choice = input("Choose the field to edit (ID, Name, Course): ")
+                    choice = choice.lower()
+
+                    if choice == "id":
+                        new_id = input("Enter new ID: ")
+                        student.id = new_id
+                        print("ID updated successfully.")
+                    elif choice == "name":
+                        new_name = input("Enter new name: ")
+                        if not new_name:
+                            print("Invalid input. Name cannot be blank.")
+                            return
+                        student.name = new_name
+                        print("Name updated successfully.")
+                    elif choice == "course":
+                        new_course = input("Enter new course: ")
+                        student.course = new_course
+                        print("Course updated successfully.")
+                    else:
+                        print("Invalid choice.")
                         return
+
+                    self.save_students()
                     return
 
-                if not search in student.id and search in student.name:
-                    print("Student not found.")
-                    return
-            self.save_students()
+            print("Student not found.")
         else:
-            print("Student List is empty.")
-          
+            print("Student list is empty.")
+
+    def edit_course(self):
+            search = input("Enter search term (Code or Name): ")
+            
+            if self.courses:
+                for course in self.courses:
+                    if search in course.code or search in course.name:
+                        print(f"Code: {course.code}, Name: {course.name}")
+
+                        choice = input("Choose the field to edit (Code, Name): ")
+                        choice = choice.lower()
+
+                        if choice == "code":
+                            new_id = input("Enter new code: ")
+                            course.code = new_id
+                            print("Code updated successfully.")
+                        elif choice == "name":
+                            new_name = input("Enter new name: ")
+                            if not new_name:
+                                print("Invalid input. Name cannot be blank.")
+                                return
+                            course.name = new_name
+                            print("Name updated successfully.")
+                        else:
+                            print("Invalid choice.")
+                            return
+
+                        self.save_students()
+                        return
+
+                print("Student not found.")
+            else:
+                print("Student list is empty.")
 
     def search_student(self):
         search = input("Enter search term(Name or ID): ")
