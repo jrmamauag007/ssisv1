@@ -244,9 +244,9 @@ class SimpleStudentInformationSystem:
                         self.save_students()
                         return
 
-                print("Student not found.")
+                print("Course not found.")
             else:
-                print("Student list is empty.")
+                print("Course list is empty.")
 
     def search_student(self):
         search = input("Enter search term(Name or ID): ")
@@ -255,7 +255,7 @@ class SimpleStudentInformationSystem:
                 if search in student.id or search in student.name:
                     print(f"Student found: ID: {student.id}, Name: {student.name}, Course: {student.course}")
                     return
-                if not search in student.id and not search in student.name:
+                elif not search in student.id and not search in student.name:
                     print("Student not found.")
                     return
         else:
